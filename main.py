@@ -39,10 +39,17 @@ def sendMail(mailName, mailMail, mailSubject, mailMessaje):
 def not_found(error):
     return "Not Found."
 
+# Render Home Page
+
+
+@app.route('/')
+def index():
+    return render_template('home.html')
+
+
 # Render Contact page
 
-
-@app.route('/', methods=["GET", "POST"])
+@app.route('/contact', methods=["GET", "POST"])
 def get_contact():
     form = ContactForm()
     if request.method == 'POST':
@@ -58,4 +65,4 @@ def get_contact():
 
 # Run app
 if __name__ == '__main__':
-    app.run(port=5000, debug=False)
+    app.run(port=5000, debug=True)

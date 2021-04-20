@@ -1,45 +1,34 @@
-<!-- here we add our contact forms -->
+{% extends 'base.html' %}
+<title>{% block title %} Contact {% endblock %} - Flask Contact Form </title>
+
 {% block content %}
-<div class="contact">
-    <h3>Contact us</h3>
+<div class="container-fluid">
+    <div class="col-md-6">
+    <h2>Contact me</h2>
     <form action="{{ url_for('get_contact') }}" method=post>
-        <div>
-            <!-- name forms -->
-            <p>
-                {{ form.name.label }} <br>
-                {{ form.name(placeholder='Your name') }}
-            </p>
-            <!-- email forms -->
-            <p>
-                {{ form.email.label }} <br>
-                {{ form.email(placeholder='Your e-mail ...') }}
-            </p>
-            <!-- Subject of your request -->
-            <p>
+        <fieldset>
+            <legend>Legend</legend>
+            <div class="form-group">
+                {{ form.name.label }}
+                {{ form.name(placeholder='Name', class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label }} 
+                {{ form.email(placeholder='Email', class="form-control") }}
+            </div>
+            <div class="form-group">
                 {{ form.subject.label }}<br>
-                {{form.subject(placeholder='Your subject ...')}}
-            </p>
-            <!-- Content of your request -->
-            <p>
+                {{form.subject(placeholder='Subject', class="form-control" )}}
+            </div>
+            <div class="form-group">
                 {{ form.message.label }}<br>
-                {{ form.message(placeholder='Write your request ...') }}
-            </p>
-            <!-- Submit button -->
-            <p>
-                {{ form.submit }}
-            </p>
-        </div>
-    </form>
+                {{ form.message(placeholder='Write your request', class="form-control", rows='5') }}
+            </div>
+            {{ form.submit(class="btn btn-primary")}}
+            </fieldset>
+        </form>
+</div>
 </div>
 
 {% endblock %}
-
-
-
-<!-- add the right css file -->
-{% block styles %}
-<link rel="stylesheet" href="{{url_for('.static', filename='styles.css')}}">
-{% endblock %}
-
-
 
